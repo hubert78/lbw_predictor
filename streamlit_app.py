@@ -142,7 +142,7 @@ categorical_columns = ['CAT_MATERNALAGE', 'LEVELOFEDUCATION', 'OCCUPATION', 'CAT
 numerical_columns = ['MATERNALAGE', 'GRAVIDITY', 'PARITY', 'NO.ANTENALVISITS', 'HB_Delivery', 'GESTATIONALAGE', 
                'SBPBEFOREDELIVERY', 'DBPBEFOREDELIVERY']
 
-X_encoded = pd.get_dummies(X, columns=categorical_columns)
+X_encoded = pd.get_dummies(df, columns=categorical_columns)
 scaler = joblib.load('minmax_scaler.pkl')
 X_encoded[numerical_columns] = scaler.fit_transform(df[numerical_columns])
 
