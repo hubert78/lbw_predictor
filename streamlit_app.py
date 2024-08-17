@@ -177,15 +177,13 @@ if st.button('Check prediction'):
     # Combine the numerical data with the encoded categorical data
     X_encoded = pd.concat([X_encoded, encoded_df], axis=1)
 
-    st.write(X_encoded.shape)
     
 
     # Get scaler file
     scaler_file = download_file('https://github.com/hubert78/lbw_predictor/raw/master/minmax_scaler.pkl')
     scaler = joblib.load(scaler_file)
     X_encoded[numerical_columns] = scaler.transform(X_encoded[numerical_columns])
-    st.write(scaler)
-    st.write(X_encoded)
+    
     
     # Predicting Case with imported model
     model_file = download_file('https://github.com/hubert78/lbw_predictor/raw/master/LBW-svm-model.joblib')
