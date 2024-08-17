@@ -149,6 +149,12 @@ numerical_columns = ['MATERNALAGE', 'GRAVIDITY', 'PARITY', 'NO.ANTENALVISITS', '
 
 # One-Hot Encoder
 onehot_encoder = joblib.load('onehot_encoder.joblib')
+# Ensure the DataFrame has all the necessary columns
+missing_columns = [col for col in categorical_columns if col not in df.columns]
+if missing_columns:
+    st.warning(f"The following columns are missing from the DataFrame: {missing_columns}")
+
+
 encoded_data = onehot_encoder.transform(df[categorical_columns])
 # Convert the encoded data to a DataFrame with proper column names
 encoded_df = pd.DataFrame(encoded_data, columns=onehot_encoder.get_feature_names_out(categorical_columns))
