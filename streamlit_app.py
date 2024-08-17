@@ -12,7 +12,7 @@ col1, col2 = st.columns(2)
 with col1:
   age = st.number_input('Age')
 with col2:
-  levelofeducation = st.selectbox('Level of education', index= 'Tertiary', ['Basic', 'Illiterate', 'Secondary', 'Tertiary'])
+  levelofeducation = st.selectbox('Level of education', ['Basic', 'Illiterate', 'Secondary', 'Tertiary'], index= 'Tertiary')
 
 col1, col2 = st.columns(2)
 with col1:
