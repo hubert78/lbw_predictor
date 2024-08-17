@@ -80,7 +80,7 @@ with st.expander('Clinlical history'):
   with col1:
     eclampsia = st.selectbox('Eclampsia', yes_no_option, index=yes_no_option.index('No'))
   with col2:
-    dbp = st.selectbox('Severe Eclampsia', yes_no_option, index=yes_no_option.index('No'))
+    severe_eclampsia = st.selectbox('Severe Eclampsia', yes_no_option, index=yes_no_option.index('No'))
 
   col1, col2 = st.columns(2)
   with col1:
@@ -110,12 +110,12 @@ df = pd.DataFrame()
 if st.button('Check prediction'):
     data_list = [
         maternal_age, levelofeducation, occupation, gravidity, parity, antenatal_visits, gestational_age,
-        ptd37weeks, antpartumhemorrhage, sbp, dbp, babysex, bloodgroup, hb, retro, syphillis, hepatitis
+        ptd37weeks, antpartumhemorrhage, sbp, dbp, eclampsia, severe_eclampsia babysex, bloodgroup, hb, retro, syphillis, hepatitis
     ]
     
     col_names = [
         'MATERNALAGE', 'LEVELOFEDUCATION', 'OCCUPATION', 'GRAVIDITY', 'PARITY', 'NO.ANTENALVISITS', 'GESTATIONALAGE',
-        'PTDlt37WEEKS', 'AntepartumHemorrhage', 'SBPBEFOREDELIVERY', 'DBPBEFOREDELIVERY', 'BABYSEX', 
+        'PTDlt37WEEKS', 'AntepartumHemorrhage', 'SBPBEFOREDELIVERY', 'DBPBEFOREDELIVERY', 'ECLAMPSIA', 'SEVEREPREECLAMPSIA', 'BABYSEX', 
         'BLOODGROUP', 'HB_Delivery', 'RETROSTATUS', 'SYPHILLISSTATUS', 'HEPATITISBSTATUS'
     ]
 
