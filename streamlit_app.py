@@ -175,10 +175,11 @@ if st.button('Check prediction'):
         st.write("File not available for loading.")
     
     # Check Column Names and Transform
+    st.write('++++++++++++++++++')
 
     # Ensure the columns in df match the encoder's columns
     df_columns = df.columns.tolist()
-    encoder_columns = onehot_encoder.get_feature_names_out(categorical_columns).tolist()
+    encoder_columns = onehot_encoder.get_feature_names_out().tolist()
     st.write(encoder_columns)
 
     # Check if the columns match
