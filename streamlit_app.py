@@ -115,7 +115,7 @@ if st.button('Check prediction'):
     ]
 
     
-    df = pd.DataFrame(data_list, columns=col_names)
+    df = pd.DataFrame([data_list], columns=col_names)
 
 
     st.write(df)
