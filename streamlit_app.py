@@ -111,12 +111,10 @@ if st.button('Check prediction'):
     col_names = [
         'MATERNALAGE', 'LEVELOFEDUCATION', 'OCCUPATION', 'GRAVIDITY', 'PARITY', 'NO.ANTENALVISITS', 'GESTATIONALAGE',
         'PTDlt37WEEKS', 'AntepartumHemorrhage', 'SBPBEFOREDELIVERY', 'DBPBEFOREDELIVERY', 'BABYSEX', 
-        'BLOODGROUP', 'HB_Delivery' 'RETROSTATUS', 'SYPHILLISSTATUS', 'HEPATITISBSTATUS'
+        'BLOODGROUP', 'HB_Delivery', 'RETROSTATUS', 'SYPHILLISSTATUS', 'HEPATITISBSTATUS'
     ]
 
-    
+    # Wrap data_list in another list to make it a 2D list
     df = pd.DataFrame([data_list], columns=col_names)
-
-
     st.write(df)
 
