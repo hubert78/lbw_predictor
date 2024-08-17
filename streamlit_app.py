@@ -158,7 +158,7 @@ if st.button('Check prediction'):
     # One-Hot Encoder
     # download the file before loading it with joblib
     one_hot_encoder_file = download_file('https://github.com/hubert78/lbw_predictor/raw/master/onehot_encoder.joblib')
-    onehot_encoder = joblib.load(file_path)  
+    onehot_encoder = joblib.load(one_hot_encoder_file)  
     st.write(onehot_encoder)
 
     st.write('==========================================================')
