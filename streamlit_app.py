@@ -162,43 +162,36 @@ if st.button('Check prediction'):
     one_hot_encoder_file = download_file('https://github.com/hubert78/lbw_predictor/raw/master/onehot_encoder.joblib')
 
     # Check if file exists
-    file_path = 'onehot_encoder.joblib'
-    if os.path.exists(file_path):
-        file_size = os.path.getsize(file_path)
+    if one_hot_encoder_file and os.path.exists(one_hot_encoder_file):
+        file_size = os.path.getsize(one_hot_encoder_file)
         st.write(f"File exists. Size: {file_size} bytes.")
+    
+        try:
+            onehot_encoder = joblib.load(one_hot_encoder_file)
+            st.write("File loaded successfully.")
+        except Exception as e:
+            st.write(f"Failed to load file: {e}")
     else:
-        st.write("File does not exist.")
-
+        st.write("File not available for loading.")
     
-    #onehot_encoder = joblib.load(one_hot_encoder_file) 
+    # Check Column Names and Transform
     try:
-        onehot_encoder = joblib.load(file_path)
-        st.write("File loaded successfully.")
-    except Exception as e:
-        st.write(f"Failed to load file: {e}")    
-
-    st.write('=====================================================')
-
-    one_hot_fit_columns = ['MATERNALAGE', 'LEVELOFEDUCATION', 'OCCUPATION', 'GRAVIDITY', 'PARITY',
-       'NO.ANTENALVISITS', 'HB_Delivery', 'HEPATITISBSTATUS',
-       'SYPHILLISSTATUS', 'RETROSTATUS', 'BLOODGROUP', 'GESTATIONALAGE',
-       'PTDlt37WEEKS', 'SBPBEFOREDELIVERY', 'DBPBEFOREDELIVERY',
-       'AntepartumHemorrhage', 'ECLAMPSIA', 'SEVEREPREECLAMPSIA', 'BABYSEX',
-       'CAT_MATERNALAGE', 'CAT_GRAVIDITY', 'CAT_PARITY']
-
-    cols = df.columns
-    for i in range(len(cols)):
-        if cols[i] != one_hot_fit_columns[i]:
-            st.write(cols[i])
+        # Ensure the columns in df match the encoder's columns
+        df_columns = df.columns.tolist()
+        encoder_columns = onehot_encoder.get_feature_names_out(categorical_columns).tolist()
     
-    encoded_data = onehot_encoder.transform(df[categorical_columns])
-    # Convert the encoded data to a DataFrame with proper column names
-    encoded_df = pd.DataFrame(encoded_data, columns=onehot_encoder.get_feature_names_out(categorical_columns))
-    # Drop the original categorical columns from X
-    X_encoded = df.drop(columns=categorical_columns)
-    # Combine the numerical data with the encoded categorical data
-    X_encoded = pd.concat([X_encoded, encoded_df], axis=1)    
-
+        # Check if the columns match
+        if sorted(df_columns) != sorted(encoder_columns):
+            st.write(f"Column mismatch: DataFrame columns are {df_columns}, but expected encoder columns are {encoder_columns}")
+        else:
+            encoded_data = onehot_encoder.transform(df[categorical_columns])
+            encoded_df = pd.DataFrame(encoded_data, columns=onehot_encoder.get_feature_names_out(categorical_columns))
+            
+            X_encoded = df.drop(columns=categorical_columns)
+            X_encoded = pd.concat([X_encoded, encoded_df], axis=1)
+            st.write(X_encoded)
+    except Exception as e:
+        st.write(f"Error during encoding: {e}")
     
 
     # Get scaler file
