@@ -114,9 +114,9 @@ if st.button('Check prediction'):
         'BLOODGROUP', 'HB_Delivery' 'RETROSTATUS', 'SYPHILLISSTATUS', 'HEPATITISBSTATUS'
     ]
 
-    combined_dict = dict(zip(col_names, data_list))
-    #df = pd.DataFrame(combined_dict)
+    
+    df = pd.DataFrame(data_list, columns=col_names)
 
 
-    st.write(combined_dict)
+    st.write(df)
 
