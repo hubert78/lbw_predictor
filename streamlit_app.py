@@ -113,8 +113,9 @@ if st.button('Check prediction'):
         'PTDlt37WEEKS', 'AntepartumHemorrhage', 'SBPBEFOREDELIVERY', 'DBPBEFOREDELIVERY', 'BABYSEX', 
         'BLOODGROUP', 'HB_Delivery' 'RETROSTATUS', 'SYPHILLISSTATUS', 'HEPATITISBSTATUS'
     ]
-    
-    #df = pd.DataFrame(data_list, columns=col_names)
-    #st.write(df)
-    st.write(type(data_list))
+
+    combined_dict = dict(zip(data_list, col_names))
+    df = pd.DataFrame(combined_dict)
+    st.write(df)
+    #st.write(type(data_list))
 
