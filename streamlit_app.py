@@ -191,9 +191,9 @@ if st.button('Check prediction'):
     predicted = loaded_svm_model.predict_proba(X_encoded)
     
     if np.argmax(predicted) == 0:
-        st.success(f'Patient had {predicted[0][0]:.2f*100}% chance of delivering a low birth weight baby')
+        st.success(f'Patient had {predicted[0][0] * 100:.2f}% chance of delivering a low birth weight baby')
     else:
-        st.warning(f'Patient has a {predicted[0][1]:.2f*100}% of delivering a low birth weight baby')
+        st.warning(f'Patient has a {predicted[0][1] * 100:.2f}% of delivering a low birth weight baby')
     
     
     
