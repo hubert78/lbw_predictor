@@ -155,41 +155,7 @@ if st.button('Check prediction'):
                    'SBPBEFOREDELIVERY', 'DBPBEFOREDELIVERY']
 
 
-    # One-Hot Encoder
-    # download the file before loading it with joblib
-    one_hot_encoder_file = download_file('https://github.com/hubert78/lbw_predictor/raw/master/onehot_encoder.joblib')
 
-    # Check if file exists
-    if one_hot_encoder_file and os.path.exists('onehot_encoder.joblib'):
-        file_size = os.path.getsize('onehot_encoder.joblib')
-        st.write(f"File exists. Size: {file_size} bytes.")
-    
-        try:
-            onehot_encoder = joblib.load('onehot_encoder.joblib')
-            st.write("File loaded successfully.")
-        except Exception as e:
-            st.write(f"Failed to load file: {e}")
-    else:
-        st.write("File not available for loading.")
-    
-    # Check Column Names and Transform
-    st.write('++++++++++++++++++')
-
-    # Ensure the columns in df match the encoder's columns
-    df_columns = df.columns.tolist()
-    encoder_columns = onehot_encoder.get_feature_names_out().tolist()
-    st.write(encoder_columns)
-
-    # Check if the columns match
-    if sorted(df_columns) == sorted(encoder_columns):
-        st.write(f"Column mismatch: DataFrame columns are {df_columns}, but expected encoder columns are {encoder_columns}")
-    else:
-        encoded_data = onehot_encoder.transform(df[categorical_columns])
-        encoded_df = pd.DataFrame(encoded_data, columns=onehot_encoder.get_feature_names_out(categorical_columns))
-        
-        X_encoded = df.drop(columns=categorical_columns)
-        X_encoded = pd.concat([X_encoded, encoded_df], axis=1)
-        st.write(X_encoded)
 
     
 
@@ -197,6 +163,7 @@ if st.button('Check prediction'):
     scaler_file = download_file('https://github.com/hubert78/lbw_predictor/raw/master/minmax_scaler.pkl')
     scaler = joblib.load(scaler_file)
     df[numerical_columns] = scaler.transform(df[numerical_columns])
+    st.write(scaler)
     st.write(df)
     
     # Predicting Case with imported model
