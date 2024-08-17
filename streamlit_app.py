@@ -175,23 +175,23 @@ if st.button('Check prediction'):
         st.write("File not available for loading.")
     
     # Check Column Names and Transform
-    try:
-        # Ensure the columns in df match the encoder's columns
-        df_columns = df.columns.tolist()
-        encoder_columns = onehot_encoder.get_feature_names_out(categorical_columns).tolist()
-    
-        # Check if the columns match
-        if sorted(df_columns) == sorted(encoder_columns):
-            st.write(f"Column mismatch: DataFrame columns are {df_columns}, but expected encoder columns are {encoder_columns}")
-        else:
-            encoded_data = onehot_encoder.transform(df[categorical_columns])
-            encoded_df = pd.DataFrame(encoded_data, columns=onehot_encoder.get_feature_names_out(categorical_columns))
-            
-            X_encoded = df.drop(columns=categorical_columns)
-            X_encoded = pd.concat([X_encoded, encoded_df], axis=1)
-            st.write(X_encoded)
-    except Exception as e:
-        st.write(f"Error during encoding: {e}")
+
+    # Ensure the columns in df match the encoder's columns
+    df_columns = df.columns.tolist()
+    encoder_columns = onehot_encoder.get_feature_names_out(categorical_columns).tolist()
+    st.write(encoder_columns)
+
+    # Check if the columns match
+    if sorted(df_columns) == sorted(encoder_columns):
+        st.write(f"Column mismatch: DataFrame columns are {df_columns}, but expected encoder columns are {encoder_columns}")
+    else:
+        encoded_data = onehot_encoder.transform(df[categorical_columns])
+        encoded_df = pd.DataFrame(encoded_data, columns=onehot_encoder.get_feature_names_out(categorical_columns))
+        
+        X_encoded = df.drop(columns=categorical_columns)
+        X_encoded = pd.concat([X_encoded, encoded_df], axis=1)
+        st.write(X_encoded)
+
     
 
     # Get scaler file
