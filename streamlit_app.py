@@ -122,7 +122,6 @@ if st.button('Check prediction'):
 
     # Wrap data_list in another list to make it a 2D list
     df = pd.DataFrame([data_list], columns=col_names)
-    st.write(df)
 
     # Feature Engineering
     col_dict = {}
@@ -131,7 +130,6 @@ if st.button('Check prediction'):
     col_dict['PARITY'] = [0, 1, 2, 10]
     
     df = categorize_column(df, col_dict)
-    st.write(df.columns)
     
     
     # Normalization and One-Hot Encoding
@@ -149,6 +147,8 @@ if st.button('Check prediction'):
     
     # One-Hot Encoder
     onehot_encoder = joblib.load('onehot_encoder.joblib')
+
+    st.write(onehot_encoder)
     expected_features = onehot_encoder.get_feature_names_out()
     st.write(expected_features)
     # Ensure the DataFrame has all the necessary columns
