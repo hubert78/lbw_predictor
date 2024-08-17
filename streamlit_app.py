@@ -190,7 +190,7 @@ if st.button('Check prediction'):
     loaded_svm_model = joblib.load(model_file)
     predicted = loaded_svm_model.predict_proba(X_encoded)
     
-    if argmax(predicted) == 0:
+    if np.argmax(predicted) == 0:
         st.success(f'Patient had {predicted[0]} chance of delivering a low birth weight baby')
     else:
         st.warning(f'Patient has a {predicted[1]} of delivering a low birth weight baby')
