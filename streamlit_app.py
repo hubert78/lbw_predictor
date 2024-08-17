@@ -187,7 +187,7 @@ if st.button('Check prediction'):
        'CAT_MATERNALAGE', 'CAT_GRAVIDITY', 'CAT_PARITY']
 
     cols = df.columns
-    for i in range(len(cols):
+    for i in range(len(cols)):
         if cols[i] != one_hot_fit_columns[i]:
             st.write(cols[i]
     
