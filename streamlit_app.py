@@ -9,6 +9,8 @@ levelofeducation_options = ['Basic', 'Illiterate', 'Secondary', 'Tertiary']
 occupation_options = ['Civil Servant', 'Self employed', 'Unemployed', 'Other']
 bloodgroup = ['A Neg', 'A Pos', 'AB Neg', 'AB Pos', 'B Neg', 'B Pos', 'O Neg', 'O Pos']
 serology_test = ['Non Reactive', 'Reactive']
+yes_no_option = ['No', 'Yes']
+sex = ['Female', 'Male']
 
 
 
@@ -25,7 +27,7 @@ with st.expander('Patient socio-demographic details'):
 
 
 
-with st.expander('Pregnancy history'):
+with st.expander('Clinlical history'):
   col1, col2 = st.columns(2)
   with col1:
     occupation = st.number_input('Gravidity', min_value=1, max_value=10, value=1)
@@ -37,6 +39,30 @@ with st.expander('Pregnancy history'):
     antenatal_visits = st.number_input('Number of antenatal visits', min_value=0, max_value=20, value=7)
   with col2:
     gestational_age = st.number_input('Gestational age', min_value=20, max_value=43, value=38)
+
+  col1, col2 = st.columns(2)
+  with col1:
+    ptd37weeks = st.selectbox('37 weeks pregnant', yes_no_option, index=yes_no_option.index('No'))
+  with col2:
+    antpartumhemorrhage = st.selectbox('Ante-partum Hemorrhage', yes_no_option, index=yes_no_option.index('No'))
+
+  col1, col2 = st.columns(2)
+  with col1:
+    sbp = st.number_input('Systolic blood pressure', min_value=11, max_value=300, value=115)
+  with col2:
+    dbp = st.number_input('Diastolic blood pressure', min_value=10, max_value=200, value=71)
+
+  col1, col2 = st.columns(2)
+  with col1:
+    eclampsia = st.selectbox('Eclampsia', yes_no_option, index=yes_no_option.index('No'))
+  with col2:
+    dbp = st.selectbox('Severe Eclampsia', yes_no_option, index=yes_no_option.index('No'))
+
+  col1, col2 = st.columns(2)
+  with col1:
+    babysex = st.selectbox('Sex of baby', sex, index=sex.index('Male'))
+  with col2:
+    dbp = st.selectbox('Severe Eclampsia', yes_no_option, index=yes_no_option.index('No'))
 
 
 with st.expander('Laboratory results'):
