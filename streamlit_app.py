@@ -113,6 +113,6 @@ if st.button('Check prediction'):
     'BLOODGROUP', 'HB_Delivery' 'RETROSTATUS', 'SYPHILLISSTATUS', 'HEPATITISBSTATUS'
   ]
     
-  df = pd.DataFrame(data_list, columns=col_names)
+  df = pd.DataFrame(columns=col_names)
   st.write(df)
 
