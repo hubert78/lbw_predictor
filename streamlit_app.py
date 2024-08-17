@@ -28,9 +28,9 @@ with col2:
 
 col1, col2 = st.columns(2)
 with col1:
-  occupation = st.number_input('Gravidity')
+  occupation = st.number_input('Number of antenatal visits', min_value=0, max_value=30, value=10)
 with col2:
-  occupation = st.number_input('Parity')
+  occupation = st.number_input('Gestational age', min_value=20, max_value=43, value=37)
 
 
 
