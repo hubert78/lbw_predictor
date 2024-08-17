@@ -69,7 +69,7 @@ with st.expander('Laboratory results'):
   with col1:
     bloodgroup = st.selectbox('Blood Type', bloodgroup, index=bloodgroup.index('O Pos'))
   with col2:
-    hb = st.number_input('Maternal HB', min_value=1.2, max_value=30, value=10.6)
+    hb = st.number_input('Maternal HB', min_value=1.0, max_value=30.0, value=10.6)
     
   col1, col2 = st.columns(2)
   with col1:
