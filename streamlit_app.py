@@ -198,6 +198,7 @@ if st.button('Check prediction'):
     scaler_file = download_file('https://github.com/hubert78/lbw_predictor/raw/master/minmax_scaler.pkl')
     scaler = joblib.load(scaler_file)
     df[numerical_columns] = scaler.transform(df[numerical_columns])
+    st.write(df)
     
     # Predicting Case with imported model
     model_file = download_file('https://github.com/hubert78/lbw_predictor/raw/master/LBW-svm-model.joblib')
