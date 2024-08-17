@@ -14,8 +14,7 @@ def categorize_column(df, col_dict):
         
         if col in df.columns:
             df['CAT_' + col] = pd.cut(df[col], bins=bins, labels=labels, right=False)
-        else:
-            print("Column '%s' does not exist in the DataFrame." % column_name)
+
     return df
 
 
