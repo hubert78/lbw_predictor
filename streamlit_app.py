@@ -188,7 +188,6 @@ if st.button('Check prediction'):
     # Predicting Case with imported model
     model_file = download_file('https://github.com/hubert78/lbw_predictor/raw/master/LBW-svm-model.joblib')
     loaded_svm_model = joblib.load(model_file)
-    st.write(loaded_svm_model)
     predicted = loaded_svm_model.predict(X_encoded)
     
     if predicted == 0:
