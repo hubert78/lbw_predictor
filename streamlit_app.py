@@ -136,8 +136,7 @@ df = categorize_column(df, col_dict)
 # Categorizing the Columns as either a Categorical Column or Numberical Column
 categorical_columns = ['CAT_MATERNALAGE', 'LEVELOFEDUCATION', 'OCCUPATION', 'CAT_GRAVIDITY', 'CAT_PARITY',
              'HEPATITISBSTATUS', 'SYPHILLISSTATUS', 'RETROSTATUS', 'BLOODGROUP', 
-             'PTDlt37WEEKS', 'MODEOFDELIVERY', 'MATERNALOUTCOME', 'AntepartumHemorrhage', 
-             'ECLAMPSIA', 'SEVEREPREECLAMPSIA', 'BABYSEX', 'NEONATALOUTCOME']
+             'PTDlt37WEEKS','AntepartumHemorrhage', 'ECLAMPSIA', 'SEVEREPREECLAMPSIA', 'BABYSEX']
 
 numerical_columns = ['MATERNALAGE', 'GRAVIDITY', 'PARITY', 'NO.ANTENALVISITS', 'HB_Delivery', 'GESTATIONALAGE', 
                'SBPBEFOREDELIVERY', 'DBPBEFOREDELIVERY']
