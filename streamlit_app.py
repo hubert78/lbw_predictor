@@ -116,5 +116,5 @@ if st.button('Check prediction'):
     
     #df = pd.DataFrame(data_list, columns=col_names)
     #st.write(df)
-    st.write(data_list)
+    st.write(type(data_list))
 
