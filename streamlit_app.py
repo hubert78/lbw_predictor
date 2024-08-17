@@ -161,6 +161,9 @@ if st.button('Check prediction'):
     # download the file before loading it with joblib
     one_hot_encoder_file = download_file('https://github.com/hubert78/lbw_predictor/raw/master/onehot_encoder.joblib')
     onehot_encoder = joblib.load(one_hot_encoder_file) 
+
+    st.write(onehot_encoder)
+    
     encoded_data = onehot_encoder.transform(df[categorical_columns])
     # Convert the encoded data to a DataFrame with proper column names
     encoded_df = pd.DataFrame(encoded_data, columns=onehot_encoder.get_feature_names_out(categorical_columns))
