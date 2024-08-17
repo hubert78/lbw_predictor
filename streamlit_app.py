@@ -115,8 +115,8 @@ if st.button('Check prediction'):
     ]
 
     combined_dict = dict(zip(col_names, data_list))
-    df = pd.DataFrame(combined_dict)
+    #df = pd.DataFrame(combined_dict)
 
 
-    #st.write(combined_dict)
+    st.write(combined_dict)
 
