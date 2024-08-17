@@ -4,6 +4,16 @@ import numpy as np
 from sklearn.preprocessing import MinMaxScaler
 import joblib
 from sklearn.svm import SVC
+import requests
+from io import BytesIO
+
+
+
+# Function to download the file from a URL
+def download_file(url):
+    response = requests.get(url)
+    response.raise_for_status()  # Check if the request was successful
+    return BytesIO(response.content)
 
 
 # Function to categorize some numeric columns 
@@ -144,17 +154,14 @@ if st.button('Check prediction'):
     
     numerical_columns = ['MATERNALAGE', 'GRAVIDITY', 'PARITY', 'NO.ANTENALVISITS', 'HB_Delivery', 'GESTATIONALAGE', 
                    'SBPBEFOREDELIVERY', 'DBPBEFOREDELIVERY']
+
+
     
     # One-Hot Encoder
-    onehot_encoder = joblib.load('https://github.com/hubert78/lbw_predictor/raw/master/onehot_encoder.joblib')
+    one_hot_encoder_file = download_file('https://github.com/hubert78/lbw_predictor/raw/master/onehot_encoder.joblib')
+    onehot_encoder = joblib.load(one_hot_encoder_file)
 
     st.write(onehot_encoder)
-    expected_features = onehot_encoder.get_feature_names_out()
-    st.write(expected_features)
-    # Ensure the DataFrame has all the necessary columns
-    missing_columns = [col for col in categorical_columns if col not in df.columns]
-    if missing_columns:
-        st.warning(f"The following columns are missing from the DataFrame: {missing_columns}")
     
     
     encoded_data = onehot_encoder.transform(df[categorical_columns])
