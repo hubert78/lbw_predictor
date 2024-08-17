@@ -162,7 +162,7 @@ if st.button('Check prediction'):
     one_hot_encoder_file = download_file('https://github.com/hubert78/lbw_predictor/raw/master/onehot_encoder.joblib')
 
     # Check if file exists
-    if one_hot_encoder_file and os.path.exists(one_hot_encoder_file):
+    if one_hot_encoder_file and os.path.exists('onehot_encoder.joblib'):
         file_size = os.path.getsize(one_hot_encoder_file)
         st.write(f"File exists. Size: {file_size} bytes.")
     
