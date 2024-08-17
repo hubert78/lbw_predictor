@@ -146,7 +146,7 @@ if st.button('Check prediction'):
                    'SBPBEFOREDELIVERY', 'DBPBEFOREDELIVERY']
     
     # One-Hot Encoder
-    onehot_encoder = joblib.load('onehot_encoder.joblib')
+    onehot_encoder = joblib.load('https://github.com/hubert78/lbw_predictor/raw/master/onehot_encoder.joblib')
 
     st.write(onehot_encoder)
     expected_features = onehot_encoder.get_feature_names_out()
@@ -167,11 +167,11 @@ if st.button('Check prediction'):
     
     
     
-    scaler = joblib.load('minmax_scaler.pkl')
+    scaler = joblib.load('https://github.com/hubert78/lbw_predictor/raw/master/minmax_scaler.pkl')
     X_encoded[numerical_columns] = scaler.transform(df[numerical_columns])
     
     # Predicting Case with imported model
-    loaded_svm_model = joblib.load('LBW-svm-model.joblib')
+    loaded_svm_model = joblib.load('https://github.com/hubert78/lbw_predictor/raw/master/LBW-svm-model.joblib')
     predicted = loaded_svm_model.predict([X_encoded.iloc[0]])
     
     if predicted == 0:
