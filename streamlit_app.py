@@ -163,11 +163,11 @@ if st.button('Check prediction'):
 
     # Check if file exists
     if one_hot_encoder_file and os.path.exists('onehot_encoder.joblib'):
-        file_size = os.path.getsize(onehot_encoder.joblib)
+        file_size = os.path.getsize('onehot_encoder.joblib')
         st.write(f"File exists. Size: {file_size} bytes.")
     
         try:
-            onehot_encoder = joblib.load(onehot_encoder.joblib)
+            onehot_encoder = joblib.load('onehot_encoder.joblib')
             st.write("File loaded successfully.")
         except Exception as e:
             st.write(f"Failed to load file: {e}")
