@@ -109,14 +109,14 @@ df = pd.DataFrame()
 
 if st.button('Check prediction'):
     data_list = [
-        maternal_age, levelofeducation, occupation, gravidity, parity, antenatal_visits, gestational_age,
-        ptd37weeks, antpartumhemorrhage, sbp, dbp, eclampsia, severe_eclampsia babysex, bloodgroup, hb, retro, syphillis, hepatitis
+        maternal_age, levelofeducation, occupation, gravidity, parity, antenatal_visits, hb, hepatitis, syphillis, 
+        retro, bloodgroup, gestational_age, ptd37weeks, sbp, dbp, antpartumhemorrhage, eclampsia, severe_eclampsia babysex,  
     ]
     
     col_names = [
-        'MATERNALAGE', 'LEVELOFEDUCATION', 'OCCUPATION', 'GRAVIDITY', 'PARITY', 'NO.ANTENALVISITS', 'GESTATIONALAGE',
-        'PTDlt37WEEKS', 'AntepartumHemorrhage', 'SBPBEFOREDELIVERY', 'DBPBEFOREDELIVERY', 'ECLAMPSIA', 'SEVEREPREECLAMPSIA', 'BABYSEX', 
-        'BLOODGROUP', 'HB_Delivery', 'RETROSTATUS', 'SYPHILLISSTATUS', 'HEPATITISBSTATUS'
+        'MATERNALAGE', 'LEVELOFEDUCATION', 'OCCUPATION', 'GRAVIDITY', 'PARITY','NO.ANTENALVISITS', 'HB_Delivery', 
+        'HEPATITISBSTATUS', 'SYPHILLISSTATUS', 'RETROSTATUS', 'BLOODGROUP', 'GESTATIONALAGE', 'PTDlt37WEEKS', 
+        'SBPBEFOREDELIVERY', 'DBPBEFOREDELIVERY', 'AntepartumHemorrhage', 'ECLAMPSIA', 'SEVEREPREECLAMPSIA', 'BABYSEX'
     ]
 
     # Wrap data_list in another list to make it a 2D list
@@ -131,6 +131,7 @@ col_dict['PARITY'] = [0, 1, 2, 10]
 
 df = categorize_column(df, col_dict)
 
+
 # Normalization and One-Hot Encoding
 
 # Categorizing the Columns as either a Categorical Column or Numberical Column
@@ -141,9 +142,20 @@ categorical_columns = ['CAT_MATERNALAGE', 'LEVELOFEDUCATION', 'OCCUPATION', 'CAT
 numerical_columns = ['MATERNALAGE', 'GRAVIDITY', 'PARITY', 'NO.ANTENALVISITS', 'HB_Delivery', 'GESTATIONALAGE', 
                'SBPBEFOREDELIVERY', 'DBPBEFOREDELIVERY']
 
-X_encoded = pd.get_dummies(df, columns=categorical_columns)
+# One-Hot Encoder
+onehot_encoder = joblib.load('onehot_encoder.joblib')
+encoded_data = onehot_encoder.transform(df[categorical_columns])
+# Convert the encoded data to a DataFrame with proper column names
+encoded_df = pd.DataFrame(encoded_data, columns=onehot_encoder.get_feature_names_out(categorical_columns))
+# Drop the original categorical columns from X
+X_encoded = X.drop(columns=categorical_columns)
+# Combine the numerical data with the encoded categorical data
+X_encoded = pd.concat([X_encoded, encoded_df], axis=1)
+
+
+
 scaler = joblib.load('minmax_scaler.pkl')
-X_encoded[numerical_columns] = scaler.fit_transform(df[numerical_columns])
+X_encoded[numerical_columns] = scaler.transform(df[numerical_columns])
 
 # Predicting Case with imported model
 loaded_svm_model = joblib.load('LBW-svm-model.joblib')
