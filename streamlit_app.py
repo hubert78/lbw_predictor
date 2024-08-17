@@ -107,11 +107,11 @@ if st.button('Check prediction'):
     maternal_age, levelofeducation, occupation, gravidity, parity, antenatal_visits, gestational_age,
     ptd37weeks, antpartumhemorrhage, sbp, dbp, babysex, bloodgroup, hb, retro, syphillis, hepatitis
   ]
-  col_names = [
+  col_names = [[
     'MATERNALAGE', 'LEVELOFEDUCATION', 'OCCUPATION', 'GRAVIDITY', 'PARITY', 'NO.ANTENALVISITS', 'GESTATIONALAGE',
     'PTDlt37WEEKS', 'AntepartumHemorrhage', 'SBPBEFOREDELIVERY', 'DBPBEFOREDELIVERY', 'BABYSEX', 
     'BLOODGROUP', 'HB_Delivery' 'RETROSTATUS', 'SYPHILLISSTATUS', 'HEPATITISBSTATUS'
-  ]
+  ]]
     
   df = pd.DataFrame(columns=col_names)
   st.write(df)
