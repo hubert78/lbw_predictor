@@ -6,7 +6,7 @@ import numpy as np
 st.title('Low Birth Weight Predictor')
 
 options = ['Civil Servant', 'Self employed', 'Unemployed', 'Other']
-default_value = 'Self employed'
+default_value = 'Civil Servant'
 
 col1, col2 = st.columns(2)
 with col1:
