@@ -5,11 +5,14 @@ import numpy as np
 
 st.title('Low Birth Weight Predictor')
 
+options = ['Civil Servant', 'Self employed', 'Unemployed', 'Other']
+default_value = 'Self employed'
+
 col1, col2 = st.columns(2)
 with col1:
   age = st.number_input('Age')
 with col2:
-  levelofeducation = st.selectbox('Level of education', index= 'Tertiary' ['Basic', 'Illiterate', 'Secondary', 'Tertiary'])
+  levelofeducation = st.selectbox('Level of education', index= 'Tertiary', ['Basic', 'Illiterate', 'Secondary', 'Tertiary'])
 
 col1, col2 = st.columns(2)
 with col1:
