@@ -110,7 +110,7 @@ df = pd.DataFrame()
 if st.button('Check prediction'):
     data_list = [
         maternal_age, levelofeducation, occupation, gravidity, parity, antenatal_visits, hb, hepatitis, syphillis, 
-        retro, bloodgroup, gestational_age, ptd37weeks, sbp, dbp, antpartumhemorrhage, eclampsia, severe_eclampsia babysex,  
+        retro, bloodgroup, gestational_age, ptd37weeks, sbp, dbp, antpartumhemorrhage, eclampsia, severe_eclampsia, babysex,  
     ]
     
     col_names = [
