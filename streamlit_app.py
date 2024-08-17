@@ -157,7 +157,38 @@ if st.button('Check prediction'):
                    'SBPBEFOREDELIVERY', 'DBPBEFOREDELIVERY']
 
 
+    # One-Hot Encoder
+    # download the file before loading it with joblib
+    one_hot_encoder_file = download_file('https://github.com/hubert78/lbw_predictor/raw/master/onehot_encoder.joblib')
+
+    # Check if file exists
+    file_path = 'onehot_encoder.joblib'
+    if os.path.exists(file_path):
+        file_size = os.path.getsize(file_path)
+        st.write(f"File exists. Size: {file_size} bytes.")
+    else:
+        st.write("File does not exist.")
+
     
+    #onehot_encoder = joblib.load(one_hot_encoder_file) 
+    try:
+        onehot_encoder = joblib.load(file_path)
+        st.write("File loaded successfully.")
+    except Exception as e:
+        st.write(f"Failed to load file: {e}")    
+
+    st.write('=====================================================')
+
+        
+    st.write(onehot_encoder)
+    
+    encoded_data = onehot_encoder.transform(df[categorical_columns])
+    # Convert the encoded data to a DataFrame with proper column names
+    encoded_df = pd.DataFrame(encoded_data, columns=onehot_encoder.get_feature_names_out(categorical_columns))
+    # Drop the original categorical columns from X
+    X_encoded = df.drop(columns=categorical_columns)
+    # Combine the numerical data with the encoded categorical data
+    X_encoded = pd.concat([X_encoded, encoded_df], axis=1)    
 
     
 
