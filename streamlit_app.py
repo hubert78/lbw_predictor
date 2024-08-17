@@ -178,6 +178,18 @@ if st.button('Check prediction'):
         st.write(f"Failed to load file: {e}")    
 
     st.write('=====================================================')
+
+    one_hot_fit_columns = ['MATERNALAGE', 'LEVELOFEDUCATION', 'OCCUPATION', 'GRAVIDITY', 'PARITY',
+       'NO.ANTENALVISITS', 'HB_Delivery', 'HEPATITISBSTATUS',
+       'SYPHILLISSTATUS', 'RETROSTATUS', 'BLOODGROUP', 'GESTATIONALAGE',
+       'PTDlt37WEEKS', 'SBPBEFOREDELIVERY', 'DBPBEFOREDELIVERY',
+       'AntepartumHemorrhage', 'ECLAMPSIA', 'SEVEREPREECLAMPSIA', 'BABYSEX',
+       'CAT_MATERNALAGE', 'CAT_GRAVIDITY', 'CAT_PARITY']
+
+    cols = df.columns
+    for i in range(len(cols):
+        if cols[i] != one_hot_fit_columns[i]:
+            st.write(cols[i]
     
     encoded_data = onehot_encoder.transform(df[categorical_columns])
     # Convert the encoded data to a DataFrame with proper column names
