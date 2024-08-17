@@ -136,9 +136,12 @@ df = categorize_column(df, col_dict)
 # Normalization and One-Hot Encoding
 
 # Categorizing the Columns as either a Categorical Column or Numberical Column
-categorical_columns = ['CAT_MATERNALAGE', 'LEVELOFEDUCATION', 'OCCUPATION', 'CAT_GRAVIDITY', 'CAT_PARITY',
-             'HEPATITISBSTATUS', 'SYPHILLISSTATUS', 'RETROSTATUS', 'BLOODGROUP', 
-             'PTDlt37WEEKS','AntepartumHemorrhage', 'ECLAMPSIA', 'SEVEREPREECLAMPSIA', 'BABYSEX']
+categorical_columns = [
+    'CAT_MATERNALAGE', 'LEVELOFEDUCATION', 'OCCUPATION', 'CAT_GRAVIDITY', 'CAT_PARITY',
+    'HEPATITISBSTATUS', 'SYPHILLISSTATUS', 'RETROSTATUS', 'BLOODGROUP', 'PTDlt37WEEKS', 
+    'AntepartumHemorrhage', 'ECLAMPSIA', 'SEVEREPREECLAMPSIA', 'BABYSEX'
+]
+
 
 numerical_columns = ['MATERNALAGE', 'GRAVIDITY', 'PARITY', 'NO.ANTENALVISITS', 'HB_Delivery', 'GESTATIONALAGE', 
                'SBPBEFOREDELIVERY', 'DBPBEFOREDELIVERY']
@@ -149,7 +152,7 @@ encoded_data = onehot_encoder.transform(df[categorical_columns])
 # Convert the encoded data to a DataFrame with proper column names
 encoded_df = pd.DataFrame(encoded_data, columns=onehot_encoder.get_feature_names_out(categorical_columns))
 # Drop the original categorical columns from X
-X_encoded = X.drop(columns=categorical_columns)
+X_encoded = df.drop(columns=categorical_columns)
 # Combine the numerical data with the encoded categorical data
 X_encoded = pd.concat([X_encoded, encoded_df], axis=1)
 
