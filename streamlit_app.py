@@ -193,7 +193,7 @@ if st.button('Check prediction'):
     if argmax(predicted) == 0:
         st.success(f'Patient had {predicted[0]} chance of delivering a low birth weight baby')
     else:
-        st.warning(f'Patient has a {predicted[1} of delivering a low birth weight baby')
+        st.warning(f'Patient has a {predicted[1]} of delivering a low birth weight baby')
     
     
     
