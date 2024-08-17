@@ -160,9 +160,26 @@ if st.button('Check prediction'):
     # One-Hot Encoder
     # download the file before loading it with joblib
     one_hot_encoder_file = download_file('https://github.com/hubert78/lbw_predictor/raw/master/onehot_encoder.joblib')
-    onehot_encoder = joblib.load(one_hot_encoder_file) 
+
+    # Check if file exists
+    file_path = 'onehot_encoder.joblib'
+    if os.path.exists(file_path):
+        file_size = os.path.getsize(file_path)
+        st.write(f"File exists. Size: {file_size} bytes.")
+    else:
+        st.write("File does not exist.")
+
+    
+    #onehot_encoder = joblib.load(one_hot_encoder_file) 
+    try:
+        onehot_encoder = joblib.load(file_path)
+        st.write("File loaded successfully.")
+    except Exception as e:
+        st.write(f"Failed to load file: {e}")    
 
     st.write('=====================================================')
+
+        
     st.write(onehot_encoder)
     
     encoded_data = onehot_encoder.transform(df[categorical_columns])
