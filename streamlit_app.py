@@ -124,58 +124,58 @@ if st.button('Check prediction'):
     df = pd.DataFrame([data_list], columns=col_names)
     st.write(df)
 
-# Feature Engineering
-col_dict = {}
-col_dict['MATERNALAGE'] = [0, 21, 36, 100]
-col_dict['GRAVIDITY'] = [1, 2, 3, 10]
-col_dict['PARITY'] = [0, 1, 2, 10]
-
-df = categorize_column(df, col_dict)
-st.write(df.columns)
-
-
-# Normalization and One-Hot Encoding
-
-# Categorizing the Columns as either a Categorical Column or Numberical Column
-categorical_columns = [
-    'CAT_MATERNALAGE', 'LEVELOFEDUCATION', 'OCCUPATION', 'CAT_GRAVIDITY', 'CAT_PARITY',
-    'HEPATITISBSTATUS', 'SYPHILLISSTATUS', 'RETROSTATUS', 'BLOODGROUP', 'PTDlt37WEEKS', 
-    'AntepartumHemorrhage', 'ECLAMPSIA', 'SEVEREPREECLAMPSIA', 'BABYSEX'
-]
-
-
-numerical_columns = ['MATERNALAGE', 'GRAVIDITY', 'PARITY', 'NO.ANTENALVISITS', 'HB_Delivery', 'GESTATIONALAGE', 
-               'SBPBEFOREDELIVERY', 'DBPBEFOREDELIVERY']
-
-# One-Hot Encoder
-onehot_encoder = joblib.load('onehot_encoder.joblib')
-# Ensure the DataFrame has all the necessary columns
-missing_columns = [col for col in categorical_columns if col not in df.columns]
-if missing_columns:
-    st.warning(f"The following columns are missing from the DataFrame: {missing_columns}")
-
-
-encoded_data = onehot_encoder.transform(df[categorical_columns])
-# Convert the encoded data to a DataFrame with proper column names
-encoded_df = pd.DataFrame(encoded_data, columns=onehot_encoder.get_feature_names_out(categorical_columns))
-# Drop the original categorical columns from X
-X_encoded = df.drop(columns=categorical_columns)
-# Combine the numerical data with the encoded categorical data
-X_encoded = pd.concat([X_encoded, encoded_df], axis=1)
-
-
-
-scaler = joblib.load('minmax_scaler.pkl')
-X_encoded[numerical_columns] = scaler.transform(df[numerical_columns])
-
-# Predicting Case with imported model
-loaded_svm_model = joblib.load('LBW-svm-model.joblib')
-predicted = loaded_svm_model.predict([X_encoded.iloc[0]])
-
-if predicted == 0:
-    st.success('Patient had little chance of delivering a low birth weight baby')
-else:
-    st.warning('Patient has a high chance of delivering a low birth weight baby')
-
-
-
+    # Feature Engineering
+    col_dict = {}
+    col_dict['MATERNALAGE'] = [0, 21, 36, 100]
+    col_dict['GRAVIDITY'] = [1, 2, 3, 10]
+    col_dict['PARITY'] = [0, 1, 2, 10]
+    
+    df = categorize_column(df, col_dict)
+    st.write(df.columns)
+    
+    
+    # Normalization and One-Hot Encoding
+    
+    # Categorizing the Columns as either a Categorical Column or Numberical Column
+    categorical_columns = [
+        'CAT_MATERNALAGE', 'LEVELOFEDUCATION', 'OCCUPATION', 'CAT_GRAVIDITY', 'CAT_PARITY',
+        'HEPATITISBSTATUS', 'SYPHILLISSTATUS', 'RETROSTATUS', 'BLOODGROUP', 'PTDlt37WEEKS', 
+        'AntepartumHemorrhage', 'ECLAMPSIA', 'SEVEREPREECLAMPSIA', 'BABYSEX'
+    ]
+    
+    
+    numerical_columns = ['MATERNALAGE', 'GRAVIDITY', 'PARITY', 'NO.ANTENALVISITS', 'HB_Delivery', 'GESTATIONALAGE', 
+                   'SBPBEFOREDELIVERY', 'DBPBEFOREDELIVERY']
+    
+    # One-Hot Encoder
+    onehot_encoder = joblib.load('onehot_encoder.joblib')
+    # Ensure the DataFrame has all the necessary columns
+    missing_columns = [col for col in categorical_columns if col not in df.columns]
+    if missing_columns:
+        st.warning(f"The following columns are missing from the DataFrame: {missing_columns}")
+    
+    
+    encoded_data = onehot_encoder.transform(df[categorical_columns])
+    # Convert the encoded data to a DataFrame with proper column names
+    encoded_df = pd.DataFrame(encoded_data, columns=onehot_encoder.get_feature_names_out(categorical_columns))
+    # Drop the original categorical columns from X
+    X_encoded = df.drop(columns=categorical_columns)
+    # Combine the numerical data with the encoded categorical data
+    X_encoded = pd.concat([X_encoded, encoded_df], axis=1)
+    
+    
+    
+    scaler = joblib.load('minmax_scaler.pkl')
+    X_encoded[numerical_columns] = scaler.transform(df[numerical_columns])
+    
+    # Predicting Case with imported model
+    loaded_svm_model = joblib.load('LBW-svm-model.joblib')
+    predicted = loaded_svm_model.predict([X_encoded.iloc[0]])
+    
+    if predicted == 0:
+        st.success('Patient had little chance of delivering a low birth weight baby')
+    else:
+        st.warning('Patient has a high chance of delivering a low birth weight baby')
+    
+    
+    
