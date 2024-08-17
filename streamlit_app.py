@@ -189,7 +189,7 @@ if st.button('Check prediction'):
     cols = df.columns
     for i in range(len(cols)):
         if cols[i] != one_hot_fit_columns[i]:
-            st.write(cols[i]
+            st.write(cols[i])
     
     encoded_data = onehot_encoder.transform(df[categorical_columns])
     # Convert the encoded data to a DataFrame with proper column names
