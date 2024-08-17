@@ -164,12 +164,12 @@ if st.button('Check prediction'):
     # Get scaler file
     scaler_file = download_file('https://github.com/hubert78/lbw_predictor/raw/master/minmax_scaler.pkl')
     scaler = joblib.load(scaler_file)
-    X_encoded[numerical_columns] = scaler.transform(df[numerical_columns])
+    df[numerical_columns] = scaler.transform(df[numerical_columns])
     
     # Predicting Case with imported model
     model_file = download_file('https://github.com/hubert78/lbw_predictor/raw/master/LBW-svm-model.joblib')
     loaded_svm_model = joblib.load(model_file)
-    predicted = loaded_svm_model.predict([X_encoded.iloc[0]])
+    predicted = loaded_svm_model.predict([df.iloc[0]])
     
     if predicted == 0:
         st.success('Patient had little chance of delivering a low birth weight baby')
