@@ -178,9 +178,6 @@ if st.button('Check prediction'):
         st.write(f"Failed to load file: {e}")    
 
     st.write('=====================================================')
-
-        
-    st.write(onehot_encoder)
     
     encoded_data = onehot_encoder.transform(df[categorical_columns])
     # Convert the encoded data to a DataFrame with proper column names
