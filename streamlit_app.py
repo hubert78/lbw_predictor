@@ -11,7 +11,7 @@ bloodgroup = ['A Neg', 'A Pos', 'AB Neg', 'AB Pos', 'B Neg', 'B Pos', 'O Neg', '
 serology_test = ['Non Reactive', 'Reactive']
 
 
-st.heading('Patient socio-demographic details')
+st.header('Patient socio-demographic details')
 col1, col2 = st.columns(2)
 with col1:
   maternal_age = st.number_input('Maternal age', min_value=10, max_value=50, value=26)
@@ -24,7 +24,7 @@ with col1:
 
 
 
-st.heading('Pregnancy history')
+st.header('Pregnancy history')
 col1, col2 = st.columns(2)
 with col1:
   occupation = st.number_input('Gravidity', min_value=1, max_value=10, value=1)
@@ -38,7 +38,7 @@ with col2:
   gestational_age = st.number_input('Gestational age', min_value=20, max_value=43, value=38)
 
 
-st.heading('Laboratory results')
+st.header('Laboratory results')
 col1, col2 = st.columns(2)
 with col1:
   bloodgroup = st.selectbox('Blood Type', bloodgroup, index=bloodgroup.index('O Pos'))
