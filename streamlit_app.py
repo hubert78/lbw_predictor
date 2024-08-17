@@ -3,6 +3,27 @@ import pandas as pd
 import numpy as np
 
 
+# Function to categorize some numeric columns 
+def categorize_column(df, column_name, bins):
+    num_of_categories = len(bins) - 1
+    labels = [f"{bins[i]}-{bins[i+1]-1}" for i in range(num_of_categories)]
+    
+    if column_name in df.columns:
+        df['CAT_' + column_name] = pd.cut(df[column_name], bins=bins, labels=labels, right=False)
+    else:
+        print("Column '%s' does not exist in the DataFrame." % column_name)
+    return df
+
+
+
+
+
+
+
+
+
+
+# ---------------- WEB APP STARTS HERE ---------------------------------------
 st.title('Low Birth Weight Predictor')
 
 levelofeducation_options = ['Basic', 'Illiterate', 'Secondary', 'Tertiary']
@@ -30,9 +51,9 @@ with st.expander('Patient socio-demographic details'):
 with st.expander('Clinlical history'):
   col1, col2 = st.columns(2)
   with col1:
-    occupation = st.number_input('Gravidity', min_value=1, max_value=10, value=1)
+    gravidity = st.number_input('Gravidity', min_value=1, max_value=10, value=1)
   with col2:
-    occupation = st.number_input('Parity', min_value=0, max_value=10, value=0  )
+    parity = st.number_input('Parity', min_value=0, max_value=10, value=0  )
   
   col1, col2 = st.columns(2)
   with col1:
@@ -81,5 +102,17 @@ with st.expander('Laboratory results'):
   with col1:
     hepatitis = st.selectbox('Hepatitis B Status', serology_test, index=serology_test.index('Non Reactive'))
 
-st.button('Check prediction')
+if st.button('Check prediction'):
+  data_list = [
+    maternal_age, levelofeducation, occupation, gravidity, parity, antenatal_visits, gestational_age,
+    ptd37weeks, antpartumhemorrhage, sbp, dbp, babysex, bloodgroup, hb, retro, syphillis, hepatitis
+  ]
+  col_names = [
+    'MATERNALAGE', 'LEVELOFEDUCATION', 'OCCUPATION', 'GRAVIDITY', 'PARITY', 'NO.ANTENALVISITS', 'GESTATIONALAGE',
+    'PTDlt37WEEKS', 'AntepartumHemorrhage', 'SBPBEFOREDELIVERY', 'DBPBEFOREDELIVERY', 'BABYSEX', 
+    'BLOODGROUP', 'HB_Delivery' 'RETROSTATUS', 'SYPHILLISSTATUS', 'HEPATITISBSTATUS'
+  ]
+    
+  df = pd.DataFrame(data_list, columns=col_names)
+  st.write(df)
 
