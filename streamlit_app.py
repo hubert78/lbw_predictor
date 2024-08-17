@@ -7,6 +7,8 @@ from sklearn.svm import SVC
 import requests
 from io import BytesIO
 import os
+import sklearn
+
 
 
 
@@ -40,6 +42,8 @@ def categorize_column(df, col_dict):
 
 # ---------------- WEB APP STARTS HERE ---------------------------------------
 st.title('Low Birth Weight Predictor')
+
+st.write(sklearn.__version__)
 
 levelofeducation_options = ['Basic', 'Illiterate', 'Secondary', 'Tertiary']
 occupation_options = ['Civil Servant', 'Self employed', 'Unemployed', 'Other']
