@@ -149,7 +149,8 @@ if st.button('Check prediction'):
     
     # One-Hot Encoder
     onehot_encoder = joblib.load('onehot_encoder.joblib')
-    st.write(onehot_encoder.get_feature_names_out())
+    expected_features = onehot_encoder.get_feature_names_out()
+    st.write(expected_features)
     # Ensure the DataFrame has all the necessary columns
     missing_columns = [col for col in categorical_columns if col not in df.columns]
     if missing_columns:
