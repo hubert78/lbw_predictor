@@ -131,6 +131,7 @@ col_dict['GRAVIDITY'] = [1, 2, 3, 10]
 col_dict['PARITY'] = [0, 1, 2, 10]
 
 df = categorize_column(df, col_dict)
+st.write(df.columns)
 
 
 # Normalization and One-Hot Encoding
