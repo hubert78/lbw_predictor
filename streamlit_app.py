@@ -166,11 +166,18 @@ if st.button('Check prediction'):
 
     st.write('==========================================================')
     
-    encoded_data = onehot_encoder.transform(df[categorical_columns])
-    # Convert the encoded data to a DataFrame with proper column names
-    encoded_df = pd.DataFrame(encoded_data, columns=onehot_encoder.get_feature_names_out(categorical_columns))
+    # Fit and transform the categorical data
+    encoded_data = onehot_encoder.fit_transform(df[categorical_columns])
+    
+    # Check the shape of encoded_data
+    st.write("Shape of encoded data:", encoded_data.shape)
+    
+    # Convert the encoded data to a DataFrame
+    encoded_df = pd.DataFrame(encoded_data.toarray(), columns=onehot_encoder.get_feature_names_out(categorical_columns))
+    
     # Drop the original categorical columns from X
     X_encoded = df.drop(columns=categorical_columns)
+    
     # Combine the numerical data with the encoded categorical data
     X_encoded = pd.concat([X_encoded, encoded_df], axis=1)
 
