@@ -103,10 +103,10 @@ with st.expander('Laboratory results'):
     hepatitis = st.selectbox('Hepatitis B Status', serology_test, index=serology_test.index('Non Reactive'))
 
 if st.button('Check prediction'):
-    data_list = [[
+    data_list = [
         maternal_age, levelofeducation, occupation, gravidity, parity, antenatal_visits, gestational_age,
         ptd37weeks, antpartumhemorrhage, sbp, dbp, babysex, bloodgroup, hb, retro, syphillis, hepatitis
-    ]]
+    ]
     
     col_names = [
         'MATERNALAGE', 'LEVELOFEDUCATION', 'OCCUPATION', 'GRAVIDITY', 'PARITY', 'NO.ANTENALVISITS', 'GESTATIONALAGE',
