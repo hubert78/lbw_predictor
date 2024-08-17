@@ -188,7 +188,7 @@ if st.button('Check prediction'):
     # Predicting Case with imported model
     model_file = download_file('https://github.com/hubert78/lbw_predictor/raw/master/LBW-svm-model.joblib')
     loaded_svm_model = joblib.load(model_file)
-    predicted = loaded_svm_model.predict.proba(X_encoded)
+    predicted = loaded_svm_model.predict_proba(X_encoded)
     
     if argmax(predicted) == 0:
         st.success(f'Patient had {predicted[0]} chance of delivering a low birth weight baby')
