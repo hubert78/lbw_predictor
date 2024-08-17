@@ -61,8 +61,7 @@ with st.expander('Clinlical history'):
   col1, col2 = st.columns(2)
   with col1:
     babysex = st.selectbox('Sex of baby', sex, index=sex.index('Male'))
-  with col2:
-    dbp = st.selectbox('Severe Eclampsia', yes_no_option, index=yes_no_option.index('No'))
+
 
 
 with st.expander('Laboratory results'):
@@ -70,10 +69,16 @@ with st.expander('Laboratory results'):
   with col1:
     bloodgroup = st.selectbox('Blood Type', bloodgroup, index=bloodgroup.index('O Pos'))
   with col2:
-    hepatitis = st.selectbox('Hepatitis B Status', serology_test, index=serology_test.index('Non Reactive'))
+    hb = st.number_input('Maternal HB', min_value=1.2, max_value=30, value=10.6)
     
   col1, col2 = st.columns(2)
   with col1:
     retro = st.selectbox('Retro (HIV) Status', serology_test, index=serology_test.index('Non Reactive'))
   with col2:
     syphillis = st.selectbox('Syphillis Status', serology_test, index=serology_test.index('Non Reactive'))
+
+  col1, col2 = st.columns(2)
+  with col1:
+    hepatitis = st.selectbox('Hepatitis B Status', serology_test, index=serology_test.index('Non Reactive'))
+
+
