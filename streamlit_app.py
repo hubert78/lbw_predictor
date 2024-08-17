@@ -1,17 +1,21 @@
 import streamlit as st
 import pandas as pd
 import numpy as np
+from sklearn.preprocessing import MinMaxScaler
+from sklearn.svm import SVC
 
 
 # Function to categorize some numeric columns 
-def categorize_column(df, column_name, bins):
-    num_of_categories = len(bins) - 1
-    labels = [f"{bins[i]}-{bins[i+1]-1}" for i in range(num_of_categories)]
-    
-    if column_name in df.columns:
-        df['CAT_' + column_name] = pd.cut(df[column_name], bins=bins, labels=labels, right=False)
-    else:
-        print("Column '%s' does not exist in the DataFrame." % column_name)
+def categorize_column(df, col_dict):
+    for col in col_dict:
+        bins = col_dict[col]
+        num_of_categories = len(bins) - 1
+        labels = [f"{bins[i]}-{bins[i+1]-1}" for i in range(num_of_categories)]
+        
+        if col in df.columns:
+            df['CAT_' + col] = pd.cut(df[col], bins=bins, labels=labels, right=False)
+        else:
+            print("Column '%s' does not exist in the DataFrame." % column_name)
     return df
 
 
@@ -102,6 +106,8 @@ with st.expander('Laboratory results'):
   with col1:
     hepatitis = st.selectbox('Hepatitis B Status', serology_test, index=serology_test.index('Non Reactive'))
 
+df = pd.DataFrame()
+
 if st.button('Check prediction'):
     data_list = [
         maternal_age, levelofeducation, occupation, gravidity, parity, antenatal_visits, gestational_age,
@@ -117,4 +123,38 @@ if st.button('Check prediction'):
     # Wrap data_list in another list to make it a 2D list
     df = pd.DataFrame([data_list], columns=col_names)
     st.write(df)
+
+# Feature Engineering
+col_dict = {}
+col_dict['MATERNALAGE'] = [0, 21, 36, 100]
+col_dict['GRAVIDITY'] = [1, 2, 3, 10]
+col_dict['PARITY'] = [0, 1, 2, 10]
+
+df = categorize_column(df, col_dict)
+
+# Normalization and One-Hot Encoding
+
+# Categorizing the Columns as either a Categorical Column or Numberical Column
+categorical_columns = ['CAT_MATERNALAGE', 'LEVELOFEDUCATION', 'OCCUPATION', 'CAT_GRAVIDITY', 'CAT_PARITY',
+             'HEPATITISBSTATUS', 'SYPHILLISSTATUS', 'RETROSTATUS', 'BLOODGROUP', 
+             'PTDlt37WEEKS', 'MODEOFDELIVERY', 'MATERNALOUTCOME', 'AntepartumHemorrhage', 
+             'ECLAMPSIA', 'SEVEREPREECLAMPSIA', 'BABYSEX', 'NEONATALOUTCOME']
+
+numerical_columns = ['MATERNALAGE', 'GRAVIDITY', 'PARITY', 'NO.ANTENALVISITS', 'HB_Delivery', 'GESTATIONALAGE', 
+               'SBPBEFOREDELIVERY', 'DBPBEFOREDELIVERY']
+
+X_encoded = pd.get_dummies(X, columns=categorical_columns)
+scaler = joblib.load('minmax_scaler.pkl')
+X_encoded[numerical_columns] = scaler.fit_transform(df[numerical_columns])
+
+# Predicting Case with imported model
+loaded_svm_model = joblib.load('LBW-svm-model.joblib')
+predicted = loaded_svm_model.predict([X_encoded.iloc[0]])
+
+if predicted == 0:
+    st.success('Patient had little chance of delivering a low birth weight baby')
+else:
+    st.warning('Patient has a high chance of delivering a low birth weight baby')
+
+
 
