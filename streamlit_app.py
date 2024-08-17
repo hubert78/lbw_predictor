@@ -81,4 +81,5 @@ with st.expander('Laboratory results'):
   with col1:
     hepatitis = st.selectbox('Hepatitis B Status', serology_test, index=serology_test.index('Non Reactive'))
 
+st.button('Check prediction')
 
