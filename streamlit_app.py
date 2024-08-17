@@ -158,12 +158,9 @@ if st.button('Check prediction'):
 
     
     # One-Hot Encoder
+    # download the file before loading it with joblib
     one_hot_encoder_file = download_file('https://github.com/hubert78/lbw_predictor/raw/master/onehot_encoder.joblib')
-    onehot_encoder = joblib.load(one_hot_encoder_file)
-
-    st.write(onehot_encoder)
-    
-    
+    onehot_encoder = joblib.load(one_hot_encoder_file) 
     encoded_data = onehot_encoder.transform(df[categorical_columns])
     # Convert the encoded data to a DataFrame with proper column names
     encoded_df = pd.DataFrame(encoded_data, columns=onehot_encoder.get_feature_names_out(categorical_columns))
@@ -172,13 +169,15 @@ if st.button('Check prediction'):
     # Combine the numerical data with the encoded categorical data
     X_encoded = pd.concat([X_encoded, encoded_df], axis=1)
     
-    
-    
-    scaler = joblib.load('https://github.com/hubert78/lbw_predictor/raw/master/minmax_scaler.pkl')
+
+    # Get scaler file
+    scaler_file = download_file('https://github.com/hubert78/lbw_predictor/raw/master/minmax_scaler.pkl')
+    scaler = joblib.load(scaler_file)
     X_encoded[numerical_columns] = scaler.transform(df[numerical_columns])
     
     # Predicting Case with imported model
-    loaded_svm_model = joblib.load('https://github.com/hubert78/lbw_predictor/raw/master/LBW-svm-model.joblib')
+    model_file = download_file('https://github.com/hubert78/lbw_predictor/raw/master/LBW-svm-model.joblib')
+    loaded_svm_model = joblib.load(model_file)
     predicted = loaded_svm_model.predict([X_encoded.iloc[0]])
     
     if predicted == 0:
