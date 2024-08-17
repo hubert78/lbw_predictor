@@ -35,15 +35,9 @@ def categorize_column(df, col_dict):
 
 
 
-
-
-
-
-
 # ---------------- WEB APP STARTS HERE ---------------------------------------
-st.title('Low Birth Weight Predictor')
 
-st.write(sklearn.__version__)
+st.title('Low Birth Weight Predictor')
 
 levelofeducation_options = ['Basic', 'Illiterate', 'Secondary', 'Tertiary']
 occupation_options = ['Civil Servant', 'Self employed', 'Unemployed', 'Other']
@@ -191,9 +185,9 @@ if st.button('Check prediction'):
     predicted = loaded_svm_model.predict_proba(X_encoded)
     
     if np.argmax(predicted) == 0:
-        st.success(f'Patient had {predicted[0][0] * 100:.2f}% chance of delivering a low birth weight baby')
+        st.subheader(f'Patient has <span style="color:green;">{predicted[0][0] * 100:.2f}%</span> chance of delivering a low birth weight baby', unsafe_allow_html=True)
     else:
-        st.warning(f'Patient has a {predicted[0][1] * 100:.2f}% of delivering a low birth weight baby')
+        st.warning(f'Patient has a <span style="color:red;">{predicted[0][1] * 100:.2f}%</span> chance of delivering a low birth weight baby', unsafe_allow_html=True)
     
     
     
