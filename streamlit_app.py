@@ -162,25 +162,24 @@ if st.button('Check prediction'):
     # One-Hot Encoder
     # download the file before loading it with joblib
     one_hot_encoder_file = download_file('https://github.com/hubert78/lbw_predictor/raw/master/onehot_encoder.joblib')
-    onehot_encoder = joblib.load(one_hot_encoder_file)  
-
-    st.write('==========================================================')
+    onehot_encoder = joblib.load(one_hot_encoder_file)
     
-    # Fit and transform the categorical data
-    encoded_data = onehot_encoder.fit_transform(df[categorical_columns])
+    # Select a single example (row) from your dataset
+    X1 = df.iloc[[0]]
     
-    # Check the shape of encoded_data
-    st.write("Shape of encoded data:", encoded_data.shape)
+    # Transform the categorical data using the loaded encoder
+    encoded_data = onehot_encoder.transform(X1[categorical_columns])
     
-    # Convert the encoded data to a DataFrame
-    encoded_df = pd.DataFrame(encoded_data.toarray(), columns=onehot_encoder.get_feature_names_out(categorical_columns))
+    # Convert the encoded data to a DataFrame with the full set of column names
+    encoded_df = pd.DataFrame(encoded_data, columns=onehot_encoder.get_feature_names_out(categorical_columns))
     
-    # Drop the original categorical columns from X
-    X_encoded = df.drop(columns=categorical_columns)
+    # Drop the original categorical columns from X1
+    X_encoded = X1.drop(columns=categorical_columns)
     
     # Combine the numerical data with the encoded categorical data
     X_encoded = pd.concat([X_encoded, encoded_df], axis=1)
 
+    st.write(X_encoded.shape)
     
 
     # Get scaler file
