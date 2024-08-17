@@ -181,7 +181,7 @@ if st.button('Check prediction'):
         encoder_columns = onehot_encoder.get_feature_names_out(categorical_columns).tolist()
     
         # Check if the columns match
-        if sorted(df_columns) != sorted(encoder_columns):
+        if sorted(df_columns) == sorted(encoder_columns):
             st.write(f"Column mismatch: DataFrame columns are {df_columns}, but expected encoder columns are {encoder_columns}")
         else:
             encoded_data = onehot_encoder.transform(df[categorical_columns])
