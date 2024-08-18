@@ -35,11 +35,11 @@ def categorize_column(df, col_dict):
 custom_css = """
 <style>
     .stApp {
-        background-color: #f0f0f0; /* Change to your desired background color */
-        color: #333333; /* Change to your desired font color */
+        background-color: #001f2b; /* Change to your desired background color */
+        color: #ffffff; /* Change to your desired font color */
     }
     .stMarkdown {
-        color: #333333; /* Change to your desired font color */
+        color: #ffffff; /* Change to your desired font color */
     }
     .stButton > button {
         background-color: #4CAF50; /* Button background color */
