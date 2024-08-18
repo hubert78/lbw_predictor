@@ -32,25 +32,6 @@ def categorize_column(df, col_dict):
     return df
     
 
-custom_css = """
-<style>
-    .stApp {
-        background-color: #001f2b; /* Change to your desired background color */
-        color: #ffffff; /* Change to your desired font color */
-    }
-    .stMarkdown {
-        color: #ffffff; /* Change to your desired font color */
-    }
-    .stButton > button {
-        background-color: #4CAF50; /* Button background color */
-        color: white; /* Button text color */
-    }
-    .stSidebar {
-        background-color: #ffffff; /* Sidebar background color */
-    }
-</style>
-"""
-
 
 # ---------------- WEB APP STARTS HERE ---------------------------------------
 
