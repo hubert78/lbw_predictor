@@ -30,8 +30,25 @@ def categorize_column(df, col_dict):
             df['CAT_' + col] = pd.cut(df[col], bins=bins, labels=labels, right=False)
 
     return df
+    
 
-
+custom_css = """
+<style>
+    .stApp {
+        background-color: #f0f0f0; /* Change to your desired background color */
+        color: #333333; /* Change to your desired font color */
+    }
+    .stMarkdown {
+        color: #333333; /* Change to your desired font color */
+    }
+    .stButton > button {
+        background-color: #4CAF50; /* Button background color */
+        color: white; /* Button text color */
+    }
+    .stSidebar {
+        background-color: #ffffff; /* Sidebar background color */
+    }
+</style>
 
 
 
