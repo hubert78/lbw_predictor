@@ -183,13 +183,16 @@ if st.button('Check prediction'):
     model_file = download_file('https://github.com/hubert78/lbw_predictor/raw/master/LBW-svm-model.joblib')
     loaded_svm_model = joblib.load(model_file)
     predicted = loaded_svm_model.predict_proba(X_encoded)
+
+    no = predicted[0][0] * 100:.2f
+    yes = predicted[0][1] * 100:.2f
     
     if np.argmax(predicted) == 0:
-        st.subheader(f'{predicted[0][0] * 100:.2f}% chance of delivering a low birth weight baby')
+        st.subheader(f'{no}% chance of delivering a low birth weight baby')
     else:
-        st.subheader(f'{predicted[0][1] * 100:.2f}% chance of delivering a low birth weight baby')
+        st.subheader(f'{yes}% chance of delivering a low birth weight baby')
     
-    results = pd.DataFrame(predicted, columns=['Normal Birth Weight', 'Low Birth Weight'])
+    results = pd.DataFrame([no, yes], columns=['Normal Birth Weight', 'Low Birth Weight'])
     st.write(results)
     
     
