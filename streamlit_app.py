@@ -185,9 +185,11 @@ if st.button('Check prediction'):
     predicted = loaded_svm_model.predict_proba(X_encoded)
     
     if np.argmax(predicted) == 0:
-        st.subheader(f'Patient has <span style="color:green;">{predicted[0][0] * 100:.2f}%</span> chance of delivering a low birth weight baby', unsafe_allow_html=True)
+        st.subheader(f'Patient has {predicted[0][0] * 100:.2f}% chance of delivering a low birth weight baby')
     else:
-        st.warning(f'Patient has a <span style="color:red;">{predicted[0][1] * 100:.2f}%</span> chance of delivering a low birth weight baby', unsafe_allow_html=True)
+        st.subheader(f'Patient has a {predicted[0][1] * 100:.2f}% chance of delivering a low birth weight baby')
     
+    results = pd.DataFrame(predicted, columns=['Normal Birth Weight', 'Low Birth Weight'])
+    st.write(results
     
     
