@@ -49,7 +49,7 @@ custom_css = """
         background-color: #ffffff; /* Sidebar background color */
     }
 </style>
-
+"""
 
 
 # ---------------- WEB APP STARTS HERE ---------------------------------------
