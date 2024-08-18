@@ -190,6 +190,6 @@ if st.button('Check prediction'):
         st.subheader(f'{predicted[0][1] * 100:.2f}% chance of delivering a low birth weight baby')
     
     results = pd.DataFrame(predicted, columns=['Normal Birth Weight', 'Low Birth Weight'])
-    st.subheader(results)
+    st.write(results)
     
     
