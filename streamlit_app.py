@@ -192,7 +192,7 @@ if st.button('Check prediction'):
     else:
         st.subheader(f'{yes} chance of delivering a low birth weight baby')
     
-    results = pd.DataFrame([no, yes], columns=['Normal Birth Weight', 'Low Birth Weight'])
+    results = pd.DataFrame([[no, yes]], columns=['Normal Birth Weight', 'Low Birth Weight'])
     st.write(results)
     
     
