@@ -188,9 +188,9 @@ if st.button('Check prediction'):
     yes = f'{predicted[0][1] * 100:.2f}%'
     
     if np.argmax(predicted) == 0:
-        st.subheader(f'{no} chance of delivering a low birth weight baby')
+        st.subheader(f'{no} chance of delivering a Normal Birth Weight baby')
     else:
-        st.subheader(f'{yes} chance of delivering a low birth weight baby')
+        st.subheader(f'{yes} chance of delivering a Low Birth Weight baby')
     
     results = pd.DataFrame([[no, yes]], columns=['Normal Birth Weight', 'Low Birth Weight'])
     st.write(results)
