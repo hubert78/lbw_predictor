@@ -184,13 +184,13 @@ if st.button('Check prediction'):
     loaded_svm_model = joblib.load(model_file)
     predicted = loaded_svm_model.predict_proba(X_encoded)
 
-    no = (predicted[0][0] * 100:.2f)
-    yes = (predicted[0][1] * 100:.2f)
+    no = f'{predicted[0][0] * 100:.2f}%
+    yes = f'{predicted[0][1] * 100:.2f}%
     
     if np.argmax(predicted) == 0:
-        st.subheader(f'{no}% chance of delivering a low birth weight baby')
+        st.subheader(f'{no} chance of delivering a low birth weight baby')
     else:
-        st.subheader(f'{yes}% chance of delivering a low birth weight baby')
+        st.subheader(f'{yes} chance of delivering a low birth weight baby')
     
     results = pd.DataFrame([no, yes], columns=['Normal Birth Weight', 'Low Birth Weight'])
     st.write(results)
