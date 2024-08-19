@@ -74,7 +74,7 @@ with st.expander('Clinlical history'):
 
   col1, col2 = st.columns(2)
   with col1:
-    ptd37weeks = st.selectbox('37 weeks pregnant', yes_no_option, index=yes_no_option.index('No'))
+    ptd37weeks = st.selectbox('Preterm Delivery', yes_no_option, index=yes_no_option.index('No'))
   with col2:
     antpartumhemorrhage = st.selectbox('Ante-partum Hemorrhage', yes_no_option, index=yes_no_option.index('No'))
 
