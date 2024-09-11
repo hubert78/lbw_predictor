@@ -18,5 +18,5 @@ if condition == "Preterm Delivery":
     ptd_predictor()
 elif condition == "Low Birth Weight":
     lbw_predictor()
-else:
+elif condition == "Diabetes":
     diabetes_predictor()
