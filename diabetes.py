@@ -21,7 +21,7 @@ def download_file(url):
 
 
 
-def ptd_predictor():
+def diabetes_predictor():
   st.subheader('Diabetes Prediction')
  
   with st.expander('Patient socio-demographic details'):
@@ -137,4 +137,4 @@ def ptd_predictor():
       
 
 if __name__ == "__main__":
-    ptd_predictor()
+    diabetes_predictor()
