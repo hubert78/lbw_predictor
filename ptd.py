@@ -186,11 +186,11 @@ def ptd_predictor():
       yes = f'{predicted[0][1] * 100:.2f}%'
       
       if np.argmax(predicted) == 0:
-          st.subheader(f'{no} chance of delivering a Normal Birth Weight baby')
+          st.subheader(f'Patient has a {no} chance of having a Preterm Delivery')
       else:
-          st.subheader(f'{yes} chance of delivering a Low Birth Weight baby')
+          st.subheader(f'Patient has a {yes} chance of having a Preterm Delivery')
       
-      results = pd.DataFrame([[no, yes]], columns=['Normal Birth Weight', 'Low Birth Weight'])
+      results = pd.DataFrame([[no, yes]], columns=['No', 'Yes'])
       st.write(results)
       
 
