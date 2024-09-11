@@ -6,7 +6,7 @@ from predictions.diabetes import diabetes_predictor
 
 
 def main():
-    st.write("")
+    st.write("Fuck this")
     st.write("")
     st.write("")
     st.write("")
@@ -27,7 +27,7 @@ def main():
         "",
         ["Select Health Condition", "Preterm Delivery", "Low Birth Weight", "Pregnancy-related Diabetes"]
     )
-        dffd
+        
     
     if condition == "Preterm Delivery":
         ptd_predictor()
