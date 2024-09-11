@@ -193,4 +193,6 @@ def ptd_predictor():
       results = pd.DataFrame([[no, yes]], columns=['Normal Birth Weight', 'Low Birth Weight'])
       st.write(results)
       
-      
+
+if __name__ == "__main__":
+    ptd_predictor()
