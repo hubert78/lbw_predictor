@@ -58,11 +58,11 @@ def diabetes_predictor():
   
   if st.button('Check prediction'):
       data_list = [
-          num_pregnancy, age, glucose, insulin, bmi, blood_pressure, skin_thickness, dpf
+          num_pregnancy, glucose, blood_pressure, skin_thickness, insulin, bmi, dpf, age
       ]
       
       col_names = [
-          'Pregnancies', 'Age', 'Glucose', 'Insulin', 'BMI', 'BloodPressure', 'SkinThickness', 'DiabetesPedigreeFunction'
+          'Pregnancies', 'Glucose', 'BloodPressure', 'SkinThickness', 'Insulin', 'BMI', 'DiabetesPedigreeFunction', 'Age'
       ]
   
       # Wrap data_list in another list to make it a 2D list
