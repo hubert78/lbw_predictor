@@ -78,6 +78,12 @@ def diabetes_predictor():
       bins = [0, 100, 125, 400]
       labels = ['Normal', 'Pre-diabetic', 'Diabetic']
       df['CAT_Glucose'] = pd.cut(df['Glucose'], bins=bins, labels=labels, right=False)
+      
+      # Let's create bins for our blood pressure categorization.
+      # This assumes that the data presented is Diastolic Blood pressure readings.
+      bins = [0, 80, 120, 200]
+      labels = ['Normal', 'Pre-hypertension', 'Hypertensive Crises']
+      df['CAT_BloodPressure'] = pd.cut(df['BloodPressure'], bins=bins, labels=labels, right=False)
 
       # Let's create bins for our insulin categorization.
       bins = [0, 167, 1000]
