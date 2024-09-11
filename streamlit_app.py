@@ -25,7 +25,7 @@ def main():
     
     condition = st.selectbox(
         "",
-        ["Select Health Condition", "Preterm Delivery", "Low Birth Weight", "Diabetes"]
+        ["Select Health Condition", "Preterm Delivery", "Low Birth Weight", "Pregnancy-related Diabetes"]
     )
         
     
