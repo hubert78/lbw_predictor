@@ -133,10 +133,10 @@ def diabetes_predictor():
       yes = f'{predicted[0][1] * 100:.2f}%'
       
       if np.argmax(predicted) == 0:
-          st.subheader('Diabetic')
+          st.subheader('Not Diabetic')
           st.write(f'Patient has a {no} chance of NOT being Diabetic')
       else:
-          st.subheader('Not Diabetic')
+          st.subheader('Diabetic')
           st.write(f'Patient has a {yes} chance of being Diabetic')
       
       results = pd.DataFrame([[no, yes]], columns=['Not Diabetic', 'Diabetic'])
