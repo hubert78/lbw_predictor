@@ -1,7 +1,7 @@
 import streamlit as st
-from lbw import lbw_predictor
-from ptd import ptd_predictor
-from diabetes import diabetes_predictor
+from predictions.lbw import lbw_predictor
+from predictions.ptd import ptd_predictor
+from predictions.diabetes import diabetes_predictor
 
 
 
