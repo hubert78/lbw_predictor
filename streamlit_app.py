@@ -5,7 +5,7 @@ from diabetes import diabetes_predictor
 
 
 
-
+st.write("")
 st.markdown("""
     <style>
     .centered-title {
