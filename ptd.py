@@ -181,7 +181,7 @@ def ptd_predictor():
       yes = f'{predicted[0][1] * 100:.2f}%'
       
       if np.argmax(predicted) == 0:
-          st.subheader(f'Patient has a {no} chance of NOT delivering Preterm')
+          st.subheader(f'Patient has a {no} chance of NOT having a Preterm Delivery')
       else:
           st.subheader(f'Patient has a {yes} chance of having a Preterm Delivery')
       
