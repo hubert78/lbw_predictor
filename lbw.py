@@ -147,7 +147,7 @@ def lbw_predictor():
   
       # One-Hot Encoder
       # download the file before loading it with joblib
-      one_hot_encoder_file = download_file('https://github.com/hubert78/lbw_predictor/raw/master/onehot_encoder.joblib')
+      one_hot_encoder_file = download_file('https://github.com/hubert78/lbw_predictor/raw/master/models/LBW-onehot_encoder.joblib')
       onehot_encoder = joblib.load(one_hot_encoder_file)
       
       
@@ -166,13 +166,13 @@ def lbw_predictor():
       
   
       # Get scaler file
-      scaler_file = download_file('https://github.com/hubert78/lbw_predictor/raw/master/minmax_scaler.pkl')
+      scaler_file = download_file('https://github.com/hubert78/lbw_predictor/raw/master/models/LBW-minmax_scaler.pkl')
       scaler = joblib.load(scaler_file)
       X_encoded[numerical_columns] = scaler.transform(X_encoded[numerical_columns])
       
       
       # Predicting Case with imported model
-      model_file = download_file('https://github.com/hubert78/lbw_predictor/raw/master/LBW-svm-model.joblib')
+      model_file = download_file('https://github.com/hubert78/lbw_predictor/raw/master/models/LBW-svm-model.joblib')
       loaded_svm_model = joblib.load(model_file)
       predicted = loaded_svm_model.predict_proba(X_encoded)
   
