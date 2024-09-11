@@ -1,6 +1,6 @@
 import streamlit as st
-from lbw.py import lbw_predictor
-from ptd.py import ptd_predictor
+from lbw import lbw_predictor
+from ptd import ptd_predictor
 
 
 
