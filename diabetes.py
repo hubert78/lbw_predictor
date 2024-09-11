@@ -30,7 +30,7 @@ def diabetes_predictor():
       num_pregnancy = st.number_input('Number of Pregnancies', min_value=0, max_value=50, value=0)
       
     with col2:
-      age = st.selectbox('Age (years)', min_value=10, max_value=100, value=30)
+      age = st.number_input('Age (years)', min_value=10, max_value=100, value=30)
     
     col1, col2 = st.columns(2)
     with col1:
