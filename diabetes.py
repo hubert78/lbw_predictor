@@ -94,8 +94,7 @@ def diabetes_predictor():
       bins = [0, 18.6, 25.0, 30.0, 100]
       labels = ['Underweight', 'Normal', 'Overweight', 'Obese']
       df['CAT_BMI'] = pd.cut(df['BMI'], bins=bins, labels=labels, right=False)
-
-      st.write(df.columns)
+      
 
       cat_cols = ['CAT_Pregnancies', 'CAT_Glucose', 'CAT_BloodPressure', 'CAT_Insulin', 'CAT_BMI']
       num_cols = ['Pregnancies', 'Glucose', 'BloodPressure', 'SkinThickness', 'Insulin', 'BMI', 'DiabetesPedigreeFunction', 'Age']
@@ -129,7 +128,7 @@ def diabetes_predictor():
       # Predicting Case with imported model
       model_file = download_file('https://github.com/hubert78/lbw_predictor/raw/master/models/diabetes_rf_model.joblib')
       rf_model = joblib.load(model_file)
-      predicted = rf_model.predict_proba(X_encoded)
+      predicted = rf_model.predict_proba(X_encoded.loc[[0]])
   
       no = f'{predicted[0][0] * 100:.2f}%'
       yes = f'{predicted[0][1] * 100:.2f}%'
