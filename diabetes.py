@@ -20,7 +20,7 @@ def download_file(url):
 def diabetes_predictor():
   st.subheader('Diabetes Prediction')
  
-  with st.expander('Patient socio-demographic details'):
+  with st.expander('Clinical details'):
     col1, col2 = st.columns(2)
     with col1:
       num_pregnancy = st.number_input('Number of Pregnancies', min_value=0, max_value=50, value=0)
