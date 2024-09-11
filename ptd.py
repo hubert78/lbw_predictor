@@ -35,7 +35,7 @@ def categorize_column(df, col_dict):
 
 # ---------------- WEB APP STARTS HERE ---------------------------------------
 def ptd_predictor():
-  st.subheader('Low Birth Weight Prediction')
+  st.subheader('Preterm Delivery Prediction')
   
   levelofeducation_options = ['Basic', 'Illiterate', 'Secondary', 'Tertiary']
   occupation_options = ['Civil Servant', 'Self employed', 'Unemployed', 'Other']
