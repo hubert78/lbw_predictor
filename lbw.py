@@ -35,7 +35,7 @@ def categorize_column(df, col_dict):
 
 # ---------------- WEB APP STARTS HERE ---------------------------------------
 def lbw_predictor():
-  st.header('Low Birth Weight Prediction')
+  st.subheader('Low Birth Weight Prediction')
   
   levelofeducation_options = ['Basic', 'Illiterate', 'Secondary', 'Tertiary']
   occupation_options = ['Civil Servant', 'Self employed', 'Unemployed', 'Other']
