@@ -148,7 +148,7 @@ def ptd_predictor():
   
       # One-Hot Encoder
       # download the file before loading it with joblib
-      one_hot_encoder_file = download_file('https://github.com/hubert78/lbw_predictor/raw/master/ptd_onehot_encoder.joblib')
+      one_hot_encoder_file = download_file('https://github.com/hubert78/lbw_predictor/raw/master/models/ptd_onehot_encoder.joblib')
       onehot_encoder = joblib.load(one_hot_encoder_file)
       
       
@@ -167,13 +167,13 @@ def ptd_predictor():
       
   
       # Get scaler file
-      scaler_file = download_file('https://github.com/hubert78/lbw_predictor/raw/master/ptd_minmax_scaler.pkl')
+      scaler_file = download_file('https://github.com/hubert78/lbw_predictor/raw/master/models/ptd_minmax_scaler.pkl')
       scaler = joblib.load(scaler_file)
       X_encoded[numerical_columns] = scaler.transform(X_encoded[numerical_columns])
       
       
       # Predicting Case with imported model
-      model_file = download_file('https://github.com/hubert78/lbw_predictor/raw/master/ptd-svm-model.joblib')
+      model_file = download_file('https://github.com/hubert78/lbw_predictor/raw/master/models/ptd-svm-model.joblib')
       loaded_svm_model = joblib.load(model_file)
       predicted = loaded_svm_model.predict_proba(X_encoded)
   
