@@ -1,15 +1,9 @@
 import streamlit as st
 import pandas as pd
 import numpy as np
-from sklearn.preprocessing import MinMaxScaler
 import joblib
-from sklearn.svm import SVC
 import requests
 from io import BytesIO
-import os
-import sklearn
-
-
 
 
 # Function to download the file from a URL
