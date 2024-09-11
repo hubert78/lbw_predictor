@@ -6,7 +6,18 @@ from diabetes import diabetes_predictor
 
 
 
-st.title('MARTERNAL HEALTHCARE')
+st.markdown("""
+    <style>
+    .centered-title {
+            display: flex; justify-content: center; align-items: center; text-align: center; margin: 0; font-size: 3em; font-weight: bold;
+            }
+    /* Responsive design for smaller screens */
+    @media (max-width: 600px) {.centered-title {font-size: 2.0em;}}
+    </style>
+
+    <div class="centered-title">MARTERNAL HEALTHCARE</div>
+""", unsafe_allow_html=True)
+
 
 condition = st.selectbox(
     "",
