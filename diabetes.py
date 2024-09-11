@@ -94,7 +94,7 @@ def diabetes_predictor():
     
       # One-Hot Encoder
       # download the file before loading it with joblib
-      one_hot_encoder_file = download_file('https://github.com/hubert78/lbw_predictor/blob/master/models/diabetes_onehot_encoder.joblib')
+      one_hot_encoder_file = download_file('https://github.com/hubert78/lbw_predictor/raw/master/models/diabetes_onehot_encoder.joblib')
       onehot_encoder = joblib.load(one_hot_encoder_file)
       
       
@@ -113,13 +113,13 @@ def diabetes_predictor():
       
   
       # Get scaler file
-      scaler_file = download_file('https://github.com/hubert78/lbw_predictor/blob/master/models/diabetes_minmax_scaler.pkl')
+      scaler_file = download_file('https://github.com/hubert78/lbw_predictor/raw/master/models/diabetes_minmax_scaler.pkl')
       scaler = joblib.load(scaler_file)
       X_encoded[num_cols] = scaler.transform(X_encoded[num_cols])
       
       
       # Predicting Case with imported model
-      model_file = download_file('https://github.com/hubert78/lbw_predictor/blob/master/models/diabetes_rf_model.joblib')
+      model_file = download_file('https://github.com/hubert78/lbw_predictor/raw/master/models/diabetes_rf_model.joblib')
       rf_model = joblib.load(model_file)
       predicted = rf_model.predict_proba(X_encoded)
   
