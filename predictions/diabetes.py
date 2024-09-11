@@ -18,7 +18,7 @@ def download_file(url):
 
 
 def diabetes_predictor():
-  st.subheader('Diabetes Prediction')
+  st.subheader('Pregnancy-related Diabetes Prediction')
  
   with st.expander('Clinical details'):
     col1, col2 = st.columns(2)
