@@ -9,8 +9,7 @@ st.title('MARTERNAL HEALTHCARE')
 
 condition = st.radio(
     "Select Health Condition",
-    ["Preterm Delivery", "Low Birth Weight"],
-    horizontal=st.session_state.horizontal,
+    ["Preterm Delivery", "Low Birth Weight"]
 )
 
 if condition == "Preterm Delivery":
