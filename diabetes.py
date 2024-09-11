@@ -37,21 +37,21 @@ def diabetes_predictor():
       glucose = st.number_input('Glucose level (mg/dL)', min_value=40.00, max_value=250.00, value=120.00)
       
     with col2:
-      insulin = st.selectbox('Insulin (IU/mL)', min_value=0, max_value=900, value=80)
+      insulin = st.number_input('Insulin (IU/mL)', min_value=0, max_value=900, value=80)
   
     col1, col2 = st.columns(2)
     with col1:
       bmi = st.number_input('BMI (kg/m^2)', min_value=15.00, max_value=70.00, value=30.00)
       
     with col2:
-      blood_pressure = st.selectbox('Blood Pressure (mmHg)', min_value=20, max_value=140, value=70)
+      blood_pressure = st.number_input('Blood Pressure (mmHg)', min_value=20, max_value=140, value=70)
 
     col1, col2 = st.columns(2)
     with col1:
-      skin_thickness = st.selectbox('Skin Thickness (mm)', min_value=7, max_value=150, value=30)
+      skin_thickness = st.number_input('Skin Thickness (mm)', min_value=7, max_value=150, value=30)
       
     with col2:
-      dpf = st.selectbox('Diabetes Pedigree Function (mmHg)', min_value=0.10, max_value=3.00, value=0.45)  
+      dpf = st.number_input('Diabetes Pedigree Function (mmHg)', min_value=0.10, max_value=3.00, value=0.45)  
   
   
   
