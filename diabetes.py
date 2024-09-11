@@ -124,7 +124,7 @@ def diabetes_predictor():
       scaler = joblib.load(scaler_file)
       X_encoded[num_cols] = scaler.transform(X_encoded[num_cols])
       
-      st.write(X_enconded)
+      st.write(X_encoded)
       # Predicting Case with imported model
       model_file = download_file('https://github.com/hubert78/lbw_predictor/raw/master/models/diabetes_rf_model.joblib')
       rf_model = joblib.load(model_file)
