@@ -6,7 +6,7 @@ from predictions.diabetes import diabetes_predictor
 
 
 def main():
-    st.write("Fuck this")
+    st.write("")
     st.write("")
     st.write("")
     st.write("")
