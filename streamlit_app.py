@@ -33,7 +33,7 @@ def main():
         ptd_predictor()
     elif condition == "Low Birth Weight":
         lbw_predictor()
-    elif condition == "Diabetes":
+    elif condition == "Pregnancy-related Diabetes":
         diabetes_predictor()
 
 
