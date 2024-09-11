@@ -89,6 +89,8 @@ def diabetes_predictor():
       labels = ['Underweight', 'Normal', 'Overweight', 'Obese']
       df['CAT_BMI'] = pd.cut(df['BMI'], bins=bins, labels=labels, right=False)
 
+      st.write(df.columns)
+
       cat_cols = ['CAT_Pregnancies', 'CAT_Glucose', 'CAT_BloodPressure', 'CAT_Insulin', 'CAT_BMI']
       num_cols = ['Pregnancies', 'Glucose', 'BloodPressure', 'SkinThickness', 'Insulin', 'BMI', 'DiabetesPedigreeFunction', 'Age']
     
