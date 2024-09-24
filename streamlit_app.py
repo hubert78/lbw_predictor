@@ -19,7 +19,7 @@ def main():
         @media (max-width: 600px) {.centered-title {font-size: 2.0em;}}
         </style>
     
-        <div class="centered-title">MARTERNAL HEALTHCARE</div>
+        <div class="centered-title">MATERNAL HEALTHCARE</div>
     """, unsafe_allow_html=True)
     
     
